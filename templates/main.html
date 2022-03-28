@@ -18,9 +18,52 @@
             <li><a href="{{url_for('logout')}}">Logout</a></li>
         </ol>
     </div>
-    <h1>Welcome to Punct!</h1>
+    <h1>Welcome, {{user.username}}</h1>
     <p>You are in user area!</p>
-    <a href="https://www.flaticon.com/free-icons/calendar" title="calendar icons">
+
+    <form action="/addtask" method="POST">
+        <div>
+            <label for="taskname">New Task Name</label>
+            <input type="text" name="taskname" placeholder="Enter here...">
+            <br>
+            <label for="taskdesc">Description</label>
+            <input type="text" name="taskdesc" placeholder="Task Description">
+            <br>
+            <button type="submit">Add Task</button>
+        </div>
+    </form>
+
+    <!-- <table> tags below is used for showing the items from database. don't modifiy this! -->
+    <table>
+        <tr>
+            <td>Task Name</td>
+            <td>Description</td>
+            <td>Status</td>
+            <td>Creation Date</td>
+            <td colspan="2">Modify</td>
+        </tr>
+
+        {% for task in task_list %}
+        <tr>
+            <td>{{task.name}}</td>
+            <td>{{task.desc}}</td>
+            <td>
+                {% if task.completion == True %}
+                Finished
+                {% else %}
+                Not finished
+                {% endif %}
+            </td>
+            <td>{{task.creationdate.strftime("%m/%d/%Y, %H:%M")}}</td>
+            <td> <a href="/updatetask/{{task.id}}">Update</a></td>
+            <td><a href="/deletetask/{{task.id}}">Delete</a></td>
+        </tr>
+        {% endfor %}
+    </table>
+
+
+    <!-- this <a> tag below is used to credit the icon owner -->
+    <a href="https://www.flaticon.com/free-icons/calendar" title="calendar icons" style="position: fixed;bottom: 0;">
         Calendar icons created by Freepik - Flaticon
     </a>
 </body>
