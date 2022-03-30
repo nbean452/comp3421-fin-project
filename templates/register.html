@@ -20,8 +20,12 @@
     </div>
     <h1>Welcome to Punct!</h1>
     <p>Register page for Punct</p>
+    {% for field, errors in form.errors.items() %}
+    <p class="error-msg">{{ ', '.join(errors) }}</p>
+    {% endfor %}
     <form method="POST" action="">
         {{form.hidden_tag()}}
+        {{msg}}
         {{form.username}}
         {{form.password}}
         {{form.submit}}

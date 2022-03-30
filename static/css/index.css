@@ -8,6 +8,10 @@
     border: black 1px solid;
 }
 
+.error-msg{
+    color: red;
+}
+
 .navbar{
     width: 100%;
     background-color: #E8E5DA;

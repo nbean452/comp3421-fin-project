@@ -82,6 +82,9 @@ def login():
             if bcrypt.check_password_hash(user.password, form.password.data):
                 login_user(user)
                 return redirect(url_for('main'))
+            else:
+                msg = "Username / Password is incorrect."
+                return render_template('login.html', form=form, msg=msg)
 
     return render_template('login.html', form=form)
 
