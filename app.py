@@ -76,6 +76,8 @@ def index():
 def login():
     form = LoginForm()
 
+    msg = ""
+
     if form.validate_on_submit():
         user = User.query.filter_by(username=form.username.data).first()
         if user:
@@ -85,6 +87,9 @@ def login():
             else:
                 msg = "Username / Password is incorrect."
                 return render_template('login.html', form=form, msg=msg)
+        else:
+            msg = "Username / Password is incorrect."
+            return render_template('login.html', form=form, msg=msg)
 
     return render_template('login.html', form=form)
 
