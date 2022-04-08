@@ -27,6 +27,8 @@ def load_user(user_id):
 
 class User(db.Model, UserMixin):
     id = db.Column(db.Integer, primary_key=True)
+    firstname = db.Column(db.String(20), nullable=False)
+    lastname = db.Column(db.String(20), nullable=True)
     username = db.Column(db.String(20), nullable=False, unique=True)
     password = db.Column(db.String(80), nullable=False)
     taskid = db.relationship('Task', backref='user')
@@ -44,6 +46,10 @@ class Task(db.Model, UserMixin):
 
 
 class RegisterForm(FlaskForm):
+    firstname = StringField(validators=[InputRequired(), Length(
+        min=2, max=20)], render_kw={"placeholder": "First Name"})
+    lastname = StringField(validators=[Length(min=2, max=20)], render_kw={
+                           "placeholder": "Last Name"})
     username = StringField(validators=[InputRequired(), Length(
         min=4, max=20)], render_kw={"placeholder": "Username"})
     password = PasswordField(validators=[InputRequired(), Length(
@@ -107,7 +113,8 @@ def register():
 
     if form.validate_on_submit():
         hashed_password = bcrypt.generate_password_hash(form.password.data)
-        new_user = User(username=form.username.data, password=hashed_password)
+        new_user = User(firstname=form.firstname.data, lastname=form.lastname.data,
+                        username=form.username.data, password=hashed_password)
         db.session.add(new_user)
         db.session.commit()
         return redirect((url_for('login')))

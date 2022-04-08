@@ -1,0 +1,10 @@
+body{
+    background-color: #F4F2E9;
+    color:#161616;
+    font-family: 'PT Sans Caption', sans-serif;
+    font-size: 20px;
+    letter-spacing:0.02em;
+}
+#logo{
+    width:8em
+}
