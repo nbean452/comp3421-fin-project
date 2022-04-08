@@ -117,9 +117,15 @@ def register():
                         username=form.username.data, password=hashed_password)
         db.session.add(new_user)
         db.session.commit()
-        return redirect((url_for('login')))
+        return redirect((url_for('register_success')))
 
     return render_template('register.html', form=form)
+
+
+@app.route('/register/success')
+def register_success():
+
+    return render_template('success.html')
 
 
 @app.route('/main')

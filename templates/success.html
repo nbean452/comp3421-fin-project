@@ -6,6 +6,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
+
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <!-- Bootstrap CSS -->
@@ -43,9 +44,9 @@
 
     <!--CSS file-->
     <link rel="stylesheet" type="text/css" href="/static/css/general.css">
-    <link rel="stylesheet" type="text/css" href="/static/css/login.css">
+    <link rel="stylesheet" type="text/css" href="/static/css/success.css">
 
-    <title>Log In</title>
+    <title>Punct</title>
 
 
 </head>
@@ -55,28 +56,13 @@
         <img src="/static/img/logo.png" alt="Punct" id="logo">
     </div>
 
-    <div class="container spacer" id="back">
-        <a href="{{url_for('index')}}">
-            <i class="fas fa-arrow-left fa-2x"></i>
+    <div class="container text-center">
+        <img src="/static/img/Congratulations.png" class="img-fluid spacer">
 
-        </a>
+        <h1>Registration Successful !</h1><br>
+        <a href="{{url_for('login')}}" class="btn btn-login">Log In Now!</a>
     </div>
 
-    <div class="container">
-        <p class="error-msg">{{ msg }}</p>
-        <form method="POST" action="">
-            {{form.hidden_tag()}}
-            <label for="username">Username</label>
-            {{form.username}}
-            <label for="password">Password</label>
-            {{form.password}}
-            <div class="checkbox">
-                <label id="showPsw"><input type="checkbox" name="show-password" onclick="showPassword('psw')"> show
-                </label>
-            </div>
-            {{form.submit(class="btn btn-default")}}
-        </form>
-    </div>
 
 
     <!-- Optional JavaScript -->
@@ -90,7 +76,6 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js"
         integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
         crossorigin="anonymous"></script>
-    <script src="/static/js/login.js"></script>
 </body>
 
 </html>
