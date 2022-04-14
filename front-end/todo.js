@@ -13,7 +13,8 @@ function validateForm() {
 
 
 $('table tbody td').click(function() {
-    $(this).parent().toggleClass( 'strikeout' );
+    $(this).parent().toggleClass( 'strikeout change' );
+    
     
     
 });
