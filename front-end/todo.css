@@ -25,10 +25,14 @@
     min-width:100%;
 
 }
+@media (min-width: 576px) {
+    .modal-dialog {
+        max-width: 650px;
+    }
 
-.modal-dialog{
-    max-width:70%;
 }
+    
+
 .modal-header{
     padding:0.5rem 1rem;
     border-bottom:0;
@@ -46,7 +50,6 @@
 }
 
 
-
 td { position: relative; }
 
 tr.strikeout td:before {
@@ -54,12 +57,47 @@ tr.strikeout td:before {
   position: absolute;
   top: 50%;
   left: 0;
-  border-bottom: 1px solid #111;
+  border-bottom: 1px solid #C9C7BE;
   width: 100%;
+  
 }
-
-
+tr.change {
+    color:#C9C7BE;
+}
 
 tbody{
     cursor: pointer;
 }
+
+.btn-ntask, .btn-add{
+    background-color: #F4AE1D;
+    border-radius: 0.5rem;
+    border:0;
+    color: #fff;
+    box-shadow: 2px 2px 4px rgb(0 0 0 / 25%);
+    
+}
+
+.btn-ntask:hover{
+    opacity:0.7;
+}
+
+.form-control{
+    border: 2px solid #F4AE1D;
+    box-shadow: 2px 2px 4px rgb(0 0 0 / 25%);
+    border-radius: 10px;
+
+}
+
+.btn-add{
+    font-size: 22px;
+    border-radius: 0.7rem;
+    
+
+}
+
+thead{ 
+    font-size: 25px;
+    font-family: 'PT Serif Caption', serif;
+}
+
