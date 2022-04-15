@@ -45,7 +45,7 @@
     <link rel="stylesheet" type="text/css" href="/static/css/general.css">
     <!-- <link rel="stylesheet" type="text/css" href="/static/css/login.css"> -->
 
-    <title>Application</title>
+    <title>To-dos</title>
 
 
 </head>
@@ -81,7 +81,7 @@
             <td colspan="2">Modify</td>
         </tr>
 
-        {% for task in task_list %}
+        {% for task in user.tasks %}
         <tr>
             <td>{{task.name}}</td>
             <td>{{task.desc}}</td>
