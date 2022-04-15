@@ -126,10 +126,8 @@
             <thead>
                 <th scope="col">Name</th>
                 <th scope="col">Description</th>
+                <th scope="col">Status</th>
                 <th scope="col">Due</th>
-                <th scope="col">
-                <th>
-
             </thead>
             <tbody>
                 <!--example-->
@@ -137,6 +135,11 @@
                 <tr>
                     <td>{{task.name}}</td>
                     <td>{{task.desc}}</td>
+                    {%if task.completion == False%}
+                    <td>Not Finished</td>
+                    {%else%}
+                    <td>Finished</td>
+                    {%endif%}
                     <td>{{task.duedate.strftime("%b %d %Y")}}</td>
                     <td><span class="close" onclick="window.location.href='deletetask/{{task.id}}';">&times;</span></td>
                     <!-- <td>
