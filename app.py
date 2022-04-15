@@ -1,3 +1,4 @@
+from asyncio import events
 from flask import Flask, render_template, url_for, redirect, request
 from flask_sqlalchemy import SQLAlchemy
 from flask_login import UserMixin, login_user, LoginManager, login_required, logout_user, current_user
@@ -31,17 +32,19 @@ class User(db.Model, UserMixin):
     lastname = db.Column(db.String(20), nullable=True)
     username = db.Column(db.String(20), nullable=False, unique=True)
     password = db.Column(db.String(80), nullable=False)
-    taskid = db.relationship('Task', backref='user')
+    tasks = db.relationship('Task', backref='user')
 
 
 class Task(db.Model, UserMixin):
     id = db.Column(db.Integer, primary_key=True)
     ownerid = db.Column(db.Integer, db.ForeignKey('user.id'))
     name = db.Column(db.String(20), nullable=False)
-    completion = db.Column(db.Boolean)
+    completion = db.Column(db.Boolean, nullable=False, default=False)
     desc = db.Column(db.String(400), nullable=True)
     creationdate = db.Column(db.DateTime, nullable=False,
                              default=datetime.now)
+    duedate = db.Column(db.DateTime, nullable=False,
+                        default=datetime.now)
     # id, ownerid, name, completion, description, creation date
 
 
@@ -89,7 +92,7 @@ def login():
         if user:
             if bcrypt.check_password_hash(user.password, form.password.data):
                 login_user(user)
-                return redirect(url_for('main'))
+                return redirect(url_for('todo'))
             else:
                 msg = "Username / Password is incorrect."
                 return render_template('login.html', form=form, msg=msg)
@@ -128,58 +131,72 @@ def register_success():
     return render_template('success.html')
 
 
-@app.route('/main')
+@app.route('/todo')
 @login_required
-def main():
-
+def todo():
     user = User.query.filter_by(username=current_user.username).first()
-    task_list = Task.query.filter_by(ownerid=user.id)
-
-    return render_template('main.html', user=user, task_list=task_list)
+    return render_template('to-do.html', user=user)
 
 
 @app.route('/addtask', methods=['POST'])
 def addtask():
 
-    taskname = request.form.get('taskname')
-    taskdesc = request.form.get('taskdesc')
+    taskname = request.form.get("taskName")
+    taskdesc = request.form.get("descr")
+    # the form returns a string of the date
+    duedate_string = request.form.get("dueDate")
 
-    if taskname == '':
-        return redirect(url_for('main'))
+    # convert string to date object
+    duedate = datetime.strptime(duedate_string, '%Y-%m-%d').date()
 
     new_task = Task(user=current_user, name=taskname,
-                    completion=False, desc=taskdesc)
+                    desc=taskdesc, duedate=duedate)
     db.session.add(new_task)
     db.session.commit()
-    return redirect(url_for('main'))
-
-    # id = db.Column(db.Integer, primary_key=True)
-    # ownerid = db.Column(db.Integer, db.ForeignKey('user.id'))
-    # name = db.Column(db.String(20), nullable=False)
-    # completion = db.Column(db.Boolean)
-    # desc = db.Column(db.String(400), nullable=True)
+    return redirect(url_for('todo'))
 
 
 @app.route('/updatetask/<int:task_id>')
+@login_required
 def updatetask(task_id):
 
     task = Task.query.filter_by(id=task_id).first()
+    if current_user.id != task.ownerid:
+        return redirect(url_for('todo'))
     task.completion = not task.completion
     db.session.commit()
-    return redirect(url_for('main'))
+    return redirect(url_for('todo'))
 
 
 @app.route('/deletetask/<int:task_id>')
+@login_required
 def deletetask(task_id):
 
     task = Task.query.filter_by(id=task_id).first()
+    if current_user.id != task.ownerid:
+        return redirect(url_for('todo'))
     db.session.delete(task)
     db.session.commit()
-    return redirect(url_for('main'))
+    return redirect(url_for('todo'))
+
+
+@app.route('/todo/calendar')
+@login_required
+def calendar():
+    user = User.query.filter_by(username=current_user.username).first()
+    tasks_list = []
+
+    for task in user.tasks:
+        task_dict = {}
+        task_dict["name"] = task.name
+        task_dict["date"] = task.duedate.strftime("%Y-%m-%d")
+        tasks_list.append(task_dict)
+
+    return render_template('calendar.html', user=user, tasks_list=tasks_list)
 
 
 if __name__ == '__main__':
 
     db.create_all()
 
-    app.run(debug=True)
+    app.run(debug=True, port=5500)
