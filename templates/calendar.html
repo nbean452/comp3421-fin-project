@@ -55,22 +55,27 @@
 </head>
 
 <body>
+    <!-- "container" class can be changed! Don't forget to remove the inline styling as well-->
+    <div class="container" style="margin: 10%;">
+        <!-- don't remove this div! this is where the calendar will be shown!-->
+        <div id="calendar">
 
-    <div id="calendar">
-
+        </div>
     </div>
+
+    <!-- script for rendering the calendar view, don't mind the errors shown in red lines below as it is working! -->
     <script>
         let calendarEl = document.getElementById("calendar");
 
         let calendar = new FullCalendar.Calendar(
             calendarEl, {
-                events: [
-                    {% for task in tasks_list %}
+            events: [
+                {% for task in tasks_list %}
                     {
-                        title: '{{task.name}}',
-                        start: '{{task.date}}',
-                    },
-                    {% endfor %}
+                title: '{{task.name}}',
+                start: '{{task.date}}',
+            },
+            {% endfor %}
                 ]
             }
         );
