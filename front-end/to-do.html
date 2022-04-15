@@ -47,34 +47,11 @@
     <title>To-dos</title>
 
 
-</head>
-
-<body>
-    <div class="container my-5 text-center">
-        <img src="logo.png" alt="Punct" id="logo">
-    </div>
-
-
-    <nav class="navbar navbar-expand-md navbar-light justify-content-end ">
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
+    <div class="container text-right mt-5 container-addbtn">
+        <button type="button" class="btn btn-ntask py-2" data-toggle="modal" data-target="#exampleModal">
+            New Task
         </button>
-
-
-        <div class="collapse navbar-collapse justify-content-end " id="navbarSupportedContent">
-            <ul class="navbar-nav ">
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
-                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        User Account
-                    </a>
-                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href="#">Log Out</a>
-                    </div>
-                </li>
-            </ul>
-        </div>
+    </div>
     </nav>
 
 
@@ -95,8 +72,8 @@
                 <div class="modal-body">
                     <form name="">
                         <div class="form-group row">
-                            <label for="taskName" class="col-sm-2 col-form-label label-special">Task Name:</label>
-                            <div class="col-sm-10">
+                            <label for="taskName" class="col-sm-3 col-form-label label-special">Task Name:</label>
+                            <div class="col-sm-9">
                                 <input type="text" class="form-control" id="taskName" required>
                             </div>
                         </div>
@@ -105,14 +82,14 @@
                             <textarea class="form-control" rows="3" id="descr" name="text"></textarea>
                         </div>
                         <div class="form-group row mt-4">
-                            <label for="dueDate" class="col-sm-2 col-form-label label-special">Due Date:</label>
-                            <div class="col-sm-10">
+                            <label for="dueDate" class="col-sm-3 col-form-label label-special">Due Date:</label>
+                            <div class="col-sm-9">
                                 <input type="date" class="form-control" id="dueDate" required>
                             </div>
                         </div>
                         <input type="hidden" id="status" value="Ongoing">
                         <div class="text-center">
-                            <button type="submit" class="btn" onclick="validateForm()">Add</button>
+                            <button type="submit" class="btn btn-add px-5 mt-5" onclick="validateForm()">Add</button>
                         </div>
                     </form>
                 </div>
@@ -171,6 +148,6 @@
         integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
         crossorigin="anonymous"></script>
     <script src="/static/js/todo.js"></script>
-</body>
+    </body>
 
 </html>
