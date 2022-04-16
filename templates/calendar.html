@@ -55,22 +55,27 @@
 </head>
 
 <body>
+    <!-- just a container for the div with id of "calendar", don't forget to remove the inline styling! -->
+    <div style="margin: 10%;">
+        <!-- this div with id of "calendar" is important for rendering the calendar view! becareful with this div! -->
+        <div id="calendar">
 
-    <div id="calendar">
-
+        </div>
     </div>
+
+    <!-- don't mind the syntax error in the script down below! it is correct syntax for the flask framework! -->
     <script>
         let calendarEl = document.getElementById("calendar");
 
         let calendar = new FullCalendar.Calendar(
             calendarEl, {
-                events: [
-                    {% for task in tasks_list %}
+            events: [
+                {% for task in tasks_list %}
                     {
-                        title: '{{task.name}}',
-                        start: '{{task.date}}',
-                    },
-                    {% endfor %}
+                title: '{{task.name}}',
+                start: '{{task.date}}',
+            },
+            {% endfor %}
                 ]
             }
         );
