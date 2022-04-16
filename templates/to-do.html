@@ -18,6 +18,10 @@
         rel="stylesheet">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css">
 
+     <!-- Fullcalendar (these two lines must be at the top! Don't move them)-->
+     <script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.11.0/main.min.js"></script>
+     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fullcalendar@5.11.0/main.min.css">
+     
     <!--favicon-->
     <link rel="shortcut icon" href="/static/favicon/favicon.ico">
     <link rel="icon" sizes="16x16 32x32 64x64" href="/static/favicon/favicon.ico">
@@ -54,8 +58,6 @@
         <img src="/static/img/logo.png" alt="Punct" id="logo">
     </div>
 
-    <!-- link to calendar view -->
-    <a href="{{url_for('calendar')}}">Calendar View</a>
 
     <nav class="navbar navbar-expand-md navbar-light justify-content-end ">
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
@@ -81,10 +83,29 @@
 
 
     <div class="container text-right mt-5 container-addbtn">
+        <button type="button" class="btn btn-ntask py-2 mx-3" data-toggle="modal" data-target="#calendarView">
+            Calendar
+        </button>
         <button type="button" class="btn btn-ntask py-2" data-toggle="modal" data-target="#exampleModal">
             New Task
         </button>
     </div>
+    <div class="modal fade" id="calendarView" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog calendar-modal" role="document">
+            <div class="modal-content cal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <iframe src="{{url_for('calendar')}}"></iframe>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
     <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
         aria-hidden="true">
         <div class="modal-dialog" role="document">
@@ -126,10 +147,13 @@
     <div class="container mt-3">
         <table class="table">
             <thead>
-                <th scope="col">Name</th>
-                <th scope="col">Description</th>
-                <th scope="col">Status</th>
-                <th scope="col">Due</th>
+                
+                <th scope="col" class="w-25">Name</th>
+                <th scope="col" class="w-40">Description</th>
+                <th scope="col" class="w-15">Status</th>
+                <th scope="col" >Due</th>
+                <th scope="col" class="w-1"> </th>
+
             </thead>
             <tbody>
                 <!--example-->
