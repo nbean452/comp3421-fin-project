@@ -75,3 +75,8 @@ input[type='password'] {
 .step.finish {
     background-color: #F4AE1D;
 }
+
+.error-msg{
+    color:red;
+}
+
