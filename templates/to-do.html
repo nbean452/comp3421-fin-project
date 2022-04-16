@@ -142,7 +142,7 @@
                     {%else%}
                     <td>Finished</td>
                     {%endif%}
-                    <td>{{task.duedate.strftime("%b %d %Y")}}</td>
+                    <td>{{task.duedate.strftime("%d %b %Y")}}</td>
                     <td><span class="close" onclick="window.location.href='deletetask/{{task.id}}';">&times;</span></td>
                     <!-- <td>
                         {% if task.completion == True %}
