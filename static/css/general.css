@@ -9,3 +9,14 @@ body {
 #logo {
     width: 8em
 }
+.w-1{
+    width:1% !important;
+}
+.w-15{
+    width:15% !important;
+}
+
+.w-40{
+    width:40% !important;
+}
+

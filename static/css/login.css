@@ -35,7 +35,7 @@ a:hover {
     margin-top: 5%;
     background-color: #F4AE1D;
     color: #F4F2E9;
-    box-shadow: 4px 6px 4px rgba(0, 0, 0, 0.25);
+    box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.25);
     border-radius: 25px;
 }
 
@@ -55,4 +55,10 @@ label {
 #submit:active {
     box-shadow: 0 0 0;
     border: 0;
+}
+
+@media (max-width: 576px){
+    #submit{
+        font-size:1.25rem;
+    }
 }

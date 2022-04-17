@@ -1,0 +1,31 @@
+body {
+    background-color: white;
+    font-size: 18px;
+}
+
+.cal-wrapper{
+    height: 100%;
+
+}
+
+#calendar{
+    height:100%;
+}
+
+h2{
+    color:#F4AE1D;
+}
+.fc-today-button, .fc-prev-button, .fc-next-button{
+    background-color: #F4AE1D !important;
+    border:0 !important;
+    color:#fff !important;
+}
+
+.fc-button-primary:disabled{
+    color:#161616 !important;
+}
+
+.fc-today-button:hover, .fc-prev-button:hover, .fc-next-button:hover{
+    opacity:.65;
+    color:#161616 !important;
+}

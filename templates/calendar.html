@@ -47,7 +47,7 @@
 
     <!--CSS file-->
     <link rel="stylesheet" type="text/css" href="/static/css/general.css">
-    <link rel="stylesheet" type="text/css" href="/static/css/index.css">
+    <link rel="stylesheet" type="text/css" href="/static/css/calendar.css">
 
     <title>Calendar View</title>
 
@@ -55,13 +55,13 @@
 </head>
 
 <body>
-    <!-- just a container for the div with id of "calendar", don't forget to remove the inline styling! -->
-    <div style="margin: 10%;">
+    
         <!-- this div with id of "calendar" is important for rendering the calendar view! becareful with this div! -->
-        <div id="calendar">
-
+        <div class="container mt-3 cal-wrapper">
+            <div id="calendar">
+            </div>
         </div>
-    </div>
+    
 
     <!-- don't mind the syntax error in the script down below! it is correct syntax for the flask framework! -->
     <script>
@@ -76,7 +76,8 @@
                 start: '{{task.date}}',
             },
             {% endfor %}
-                ]
+                ],
+                eventColor:'#F4AE1D'
             }
         );
 
