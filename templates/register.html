@@ -65,7 +65,7 @@
     <div class="container">
         <form method="POST" action="" id="reg">
             {% for field, errors in form.errors.items() %}
-            <p class="error-msg">{{ ', '.join(errors) }}</p>
+            <p class="error-msg">{{ form[field].label }}: {{ ', '.join(errors) }}</p>
             {% endfor %}
             <div class="tab">
                 {{form.hidden_tag()}}
