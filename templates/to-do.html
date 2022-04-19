@@ -153,6 +153,7 @@
                 <th scope="col" class="w-15">Status</th>
                 <th scope="col">Due</th>
                 <th scope="col" class="w-1"> </th>
+                <th scope="col" class="w-1"> </th>
 
             </thead>
             <tbody>
@@ -187,7 +188,7 @@
                     <td>{{task.desc}}</td>
                     <td>Not Finished</td>
                     <td>{{task.duedate.strftime("%d-%m-%Y")}}</td>
-                    <td><span class="close" onclick="window.location.href='updatetask/{{task.id}}';">&#10003;</span>
+                    <td><span class="close" onclick="window.location.href='updatetask/{{task.id}}';">&#10004;</span>
                     </td>
                     <td><span class="close" onclick="window.location.href='deletetask/{{task.id}}';">&times;</span></td>
                 </tr>
