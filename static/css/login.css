@@ -61,6 +61,7 @@ label {
     background-color: #ffdddd;
 }
 
+
 @media (max-width: 576px){
     #submit{
         font-size:1.25rem;
