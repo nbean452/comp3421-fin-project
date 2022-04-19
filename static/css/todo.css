@@ -97,6 +97,10 @@ thead{
     font-size: 25px;
     font-family: 'PT Serif Caption', serif;
 }
+.close{
+    cursor: pointer;
+}
+
 @media (max-width: 576px){
     
     thead{ 
