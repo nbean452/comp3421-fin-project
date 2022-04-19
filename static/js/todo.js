@@ -20,10 +20,9 @@ function validateForm() {
 //   } else {
 //     $(this).find('td:eq(2)').text('Not Finished')
 //   };
+// });
 
 
-
-});
 $(document).ready(function () {
   $('#dtBasicExample').DataTable();
   $('.dataTables_length').addClass('bs-select');
