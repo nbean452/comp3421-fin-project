@@ -18,10 +18,10 @@
         rel="stylesheet">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css">
 
-     <!-- Fullcalendar (these two lines must be at the top! Don't move them)-->
-     <script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.11.0/main.min.js"></script>
-     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fullcalendar@5.11.0/main.min.css">
-     
+    <!-- Fullcalendar (these two lines must be at the top! Don't move them)-->
+    <script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.11.0/main.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fullcalendar@5.11.0/main.min.css">
+
     <!--favicon-->
     <link rel="shortcut icon" href="/static/favicon/favicon.ico">
     <link rel="icon" sizes="16x16 32x32 64x64" href="/static/favicon/favicon.ico">
@@ -147,27 +147,28 @@
     <div class="container mt-3">
         <table class="table">
             <thead>
-                
+
                 <th scope="col" class="w-25">Name</th>
                 <th scope="col" class="w-40">Description</th>
                 <th scope="col" class="w-15">Status</th>
-                <th scope="col" >Due</th>
+                <th scope="col">Due</th>
                 <th scope="col" class="w-1"> </th>
 
             </thead>
             <tbody>
                 <!--example-->
                 {% for task in user.tasks %}
-                <tr>
-                    <td>{{task.name}}</td>
-                    <td>{{task.desc}}</td>
-                    {%if task.completion == False%}
-                    <td>Not Finished</td>
-                    {%else%}
-                    <td>Finished</td>
-                    {%endif%}
-                    <td>{{task.duedate.strftime("%d-%m-%Y")}}</td>
-                    <td><span class="close" onclick="window.location.href='deletetask/{{task.id}}';">&times;</span></td>
+                {% if task.completion == True %}
+                <tr class="strikeout change">
+                    <td class="strikeout change">{{task.name}}</td>
+                    <td class="strikeout change">{{task.desc}}</td>
+                    <td class="strikeout change">Finished</td>
+                    <td class="strikeout change">{{task.duedate.strftime("%d-%m-%Y")}}</td>
+                    <td class="strikeout change"><span class="close"
+                            onclick="window.location.href='updatetask/{{task.id}}';">&#x21bb;</span>
+                    </td>
+                    <td class="strikeout change"><span class="close"
+                            onclick="window.location.href='deletetask/{{task.id}}';">&times;</span></td>
                     <!-- <td>
                         {% if task.completion == True %}
                         Finished
@@ -180,6 +181,17 @@
                     <td> <a href="/updatetask/{{task.id}}">Update</a></td>
                     <td><a href="/deletetask/{{task.id}}">Delete</a></td> -->
                 </tr>
+                {% else %}
+                <tr>
+                    <td>{{task.name}}</td>
+                    <td>{{task.desc}}</td>
+                    <td>Not Finished</td>
+                    <td>{{task.duedate.strftime("%d-%m-%Y")}}</td>
+                    <td><span class="close" onclick="window.location.href='updatetask/{{task.id}}';">&#10003;</span>
+                    </td>
+                    <td><span class="close" onclick="window.location.href='deletetask/{{task.id}}';">&times;</span></td>
+                </tr>
+                {% endif %}
                 {% endfor %}
                 <!-- <tr>
                     <td>Web Project</td>
