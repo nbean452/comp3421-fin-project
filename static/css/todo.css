@@ -66,9 +66,6 @@ tr.strikeout td:before {
       color:#C9C7BE !important;
   }
 
-tbody{
-    cursor: pointer;
-}
 .btn-ntask, .btn-add{
     background-color: #F4AE1D;
     border-radius: 0.5rem;
