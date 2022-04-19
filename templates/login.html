@@ -67,14 +67,14 @@
         <form method="POST" action="">
             {{form.hidden_tag()}}
             <label for="username">Username</label>
-            {{form.username}}
+            {{form.username (id="username")}}
             <label for="password">Password</label>
-            {{form.password}}
+            {{form.password (id="password")}}
             <div class="checkbox">
                 <label id="showPsw"><input type="checkbox" name="show-password" onclick="showPassword('psw')"> show
                 </label>
             </div>
-            {{form.submit(class="btn btn-default")}}
+            {{form.submit(class="btn btn-default", onclick="validateForm()")}}
         </form>
     </div>
 
